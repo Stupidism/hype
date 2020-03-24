@@ -15,7 +15,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@hype/ui": ["libs/ui/src/index.ts"],
+      "@hype/lucas-components": ["libs/lucas-components/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
