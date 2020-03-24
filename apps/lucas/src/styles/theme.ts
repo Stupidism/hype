@@ -1,8 +1,13 @@
-const theme = {
-  colors: {
-    primary: '#0070f3',
-    bgColor: '#0f102a'
-  }
-};
+import _ from 'lodash';
+import { defaultTheme } from '@hype/ui';
+
+const theme = _.defaultsDeep(
+  {
+    colors: {
+      bgColor: '#0f102a',
+    },
+  },
+  defaultTheme
+);
 
 export default theme;

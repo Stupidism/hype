@@ -1,7 +1,15 @@
 import React from 'react';
-
 import styled from 'styled-components';
+
+import { Select } from '@hype/ui';
+
 import { environment } from '../environments/environment';
+
+const SelectWrapper = styled.div`
+  width: 150px;
+  color: black;
+  float: right;
+`;
 
 const StyledApp = styled.div`
   /*
@@ -41,10 +49,6 @@ const StyledApp = styled.div`
   }
 
   footer {
-    select {
-      float: right;
-    }
-
     ::after {
       content: ' ';
       display: block;
@@ -52,6 +56,12 @@ const StyledApp = styled.div`
     }
   }
 `;
+
+const options = [
+  { value: 'en-US', label: 'English' },
+  { value: 'zh-CN', label: '简体中文' },
+  { value: 'zh-HK', label: '繁体中文' },
+];
 
 export const Index = () => {
   /*
@@ -72,11 +82,9 @@ export const Index = () => {
         </h1>
       </main>
       <footer>
-        <select name="locale" id="locale-selector">
-          <option value="en-US">English</option>
-          <option value="zh-CN">简体中文</option>
-          <option value="zh-HK">繁体中文</option>
-        </select>
+        <SelectWrapper>
+          <Select defaultValue={options[0]} options={options} />
+        </SelectWrapper>
       </footer>
     </StyledApp>
   );

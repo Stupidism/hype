@@ -1,7 +1,5 @@
-import theme from '../src/styles/theme';
-
-type ThemeInterface = typeof theme;
+import { DefaultTheme as HypeTheme } from '@hype/ui';
 
 declare module 'styled-components' {
-  interface DefaultTheme extends ThemeInterface {}
+  interface DefaultTheme extends HypeTheme {}
 }
