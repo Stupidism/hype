@@ -4,7 +4,7 @@ import { createClient } from 'contentful';
 
 import { locales, LanguageSelector, setLocale, getLocale } from '@hype/i18n';
 
-import environment from '../../environments';
+import { environment } from '../../environments';
 
 interface CopywritingByName {
   [key: string]: string;

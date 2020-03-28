@@ -17,7 +17,7 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/lucas/environments/environment.ts",
+                  "replace": "apps/lucas/environments/index.ts",
                   "with": "apps/lucas/environments/environment.prod.ts"
                 }
               ]

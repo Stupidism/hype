@@ -11,4 +11,4 @@ try {
   overrides = {};
 }
 
-export default _.merge({}, devEnvironment, overrides);
+export const environment = _.merge({}, devEnvironment, overrides);
