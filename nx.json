@@ -16,27 +16,24 @@
     },
     "lucas-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "lucas"
-      ]
+      "implicitDependencies": ["lucas"]
     },
     "ui": {
       "tags": []
     },
     "ui-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "ui"
-      ]
+      "implicitDependencies": ["ui"]
     },
     "lucas-components": {
       "tags": []
     },
     "lucas-components-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "lucas-components"
-      ]
+      "implicitDependencies": ["lucas-components"]
+    },
+    "i18n": {
+      "tags": []
     }
   }
 }

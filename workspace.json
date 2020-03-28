@@ -52,10 +52,7 @@
               "apps/lucas/tsconfig.json",
               "apps/lucas/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/lucas/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/lucas/**"]
           }
         },
         "test": {
@@ -91,13 +88,8 @@
           "options": {
             "linter": "eslint",
             "config": "apps/lucas-e2e/.eslintrc",
-            "tsConfig": [
-              "apps/lucas-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/lucas-e2e/**"
-            ]
+            "tsConfig": ["apps/lucas-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/lucas-e2e/**"]
           }
         }
       }
@@ -115,10 +107,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
           }
         },
         "test": {
@@ -182,13 +171,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/ui-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui-e2e/**"
-            ]
+            "tsConfig": ["apps/ui-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui-e2e/**"]
           }
         }
       }
@@ -206,10 +190,7 @@
               "libs/lucas-components/tsconfig.lib.json",
               "libs/lucas-components/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/lucas-components/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/lucas-components/**"]
           }
         },
         "test": {
@@ -273,13 +254,34 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "tsConfig": ["apps/lucas-components-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/lucas-components-e2e/**"]
+          }
+        }
+      }
+    },
+    "i18n": {
+      "root": "libs/i18n",
+      "sourceRoot": "libs/i18n/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
             "tsConfig": [
-              "apps/lucas-components-e2e/tsconfig.e2e.json"
+              "libs/i18n/tsconfig.lib.json",
+              "libs/i18n/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/lucas-components-e2e/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/i18n/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/i18n/jest.config.js",
+            "tsConfig": "libs/i18n/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
