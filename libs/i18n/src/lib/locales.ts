@@ -1,13 +1,19 @@
-export const defaultLocale = 'en-US';
+export const defaultLocale = 'en-us';
 
-export const locales = ['en-US', 'zh-CN', 'zh-HK'];
+export const locales = ['en-us', 'zh-cn', 'zh-hk'];
 
 export interface LocaleNames {
   [value: string]: string;
 }
 
 export const localeNames = {
-  'en-US': 'English',
-  'zh-CN': '简体中文',
-  'zh-HK': '繁体中文',
+  'en-us': 'English',
+  'zh-cn': '简体中文',
+  'zh-hk': '繁体中文',
+};
+
+export const contentfulLocales = {
+  'en-us': 'en-US',
+  'zh-cn': 'zh-CN',
+  'zh-hk': 'zh-hant-HK',
 };

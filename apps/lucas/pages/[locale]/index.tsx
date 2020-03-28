@@ -2,7 +2,13 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { createClient } from 'contentful';
 
-import { locales, LanguageSelector, setLocale, getLocale } from '@hype/i18n';
+import {
+  locales,
+  LanguageSelector,
+  setLocale,
+  getLocale,
+  contentfulLocales,
+} from '@hype/i18n';
 
 import { environment } from '../../environments';
 
@@ -78,7 +84,6 @@ const replaceLocale = (oldLocale, newLocale) => {
   window.location.href = window.location.href.replace(oldLocale, newLocale);
 };
 
-//
 export const Index = ({ copywritingByName, locale }) => {
   const onLocaleChange = (option) => {
     replaceLocale(locale, option.value);
@@ -132,7 +137,7 @@ export async function getStaticProps(context) {
     const res: ContentfulListResponse<Copywriting> = await client.getEntries({
       select: 'fields',
       content_type: 'copywriting',
-      locale,
+      locale: contentfulLocales[locale],
     });
 
     copywritingByName = res.items.reduce(
