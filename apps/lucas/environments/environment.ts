@@ -1,6 +1,8 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// When building for production, this file is replaced with `environment.prod.ts`.
-
 export const environment = {
-  production: false
+  production: false,
+  contentful: {
+    host: '//cdn.contentful.com',
+    accessToken: process.env.NX_CONTENTFUL_PROD_DELIVERY_ACCESS_TOKEN,
+    space: 'mbwqgs5je33j',
+  },
 };
