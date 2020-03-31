@@ -285,6 +285,32 @@
           }
         }
       }
+    },
+    "contentful": {
+      "root": "libs/contentful",
+      "sourceRoot": "libs/contentful/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contentful/tsconfig.lib.json",
+              "libs/contentful/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/contentful/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contentful/jest.config.js",
+            "tsConfig": "libs/contentful/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

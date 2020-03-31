@@ -1,31 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { createClient } from 'contentful';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 import {
   locales,
-  LanguageSelector,
-  setLocale,
-  getLocale,
+  LocaleSwitcher,
   contentfulLocales,
+  isLocale,
+  withLocale,
+  I18nDict,
+  useTranslate,
 } from '@hype/i18n';
+import { Copywriting, ContentfulListResponse } from '@hype/contentful';
 
 import { environment } from '../../environments';
-
-interface CopywritingByName {
-  [key: string]: string;
-}
-
-interface Copywriting {
-  fields: {
-    name: string;
-    value: string;
-  };
-}
-
-interface ContentfulListResponse<T> {
-  items: T[];
-}
 
 const SelectWrapper = styled.div`
   width: 150px;
@@ -79,60 +68,49 @@ const StyledApp = styled.div`
   }
 `;
 
-const replaceLocale = (oldLocale, newLocale) => {
-  setLocale(newLocale);
-  window.location.href = window.location.href.replace(oldLocale, newLocale);
-};
-
-export const Index = ({ copywritingByName, locale }) => {
-  const onLocaleChange = (option) => {
-    replaceLocale(locale, option.value);
-  };
-
-  useEffect(() => {
-    if (getLocale() !== locale) {
-      setLocale(locale);
-    }
-  }, [locale]);
+export const Index = () => {
+  const { t } = useTranslate();
 
   return (
     <StyledApp>
       <header className="flex">
         <img src="/assets/hype-logo.png" alt="Hype Logo White" />
         <h1>
-          {copywritingByName['welcome-message']} [
-          {environment.production ? 'PROD' : 'DEV'}]
+          {t('welcome-message')} [{environment.production ? 'PROD' : 'DEV'}]
         </h1>
       </header>
       <main>
-        <h1>{copywritingByName['hype-introduction']}</h1>
+        <h1>{t('hype-introduction')}</h1>
       </main>
       <footer>
         <SelectWrapper>
-          <LanguageSelector value={locale} onChange={onLocaleChange} />
+          <LocaleSwitcher />
         </SelectWrapper>
       </footer>
     </StyledApp>
   );
 };
 
-export function getStaticPaths() {
-  return {
-    paths: locales.map((locale) => ({
-      params: { locale },
-    })),
-    fallback: false,
-  };
-}
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: locales.map((locale) => ({
+    params: { locale },
+  })),
+  fallback: false,
+});
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
   const { locale } = context.params;
+
+  if (typeof locale !== 'string' || !isLocale(locale)) {
+    console.error('[getStaticProps] Unknown locale:', locale);
+    return { props: {} };
+  }
+
   const client = createClient({
     ...environment.contentful,
     resolveLinks: false,
   });
 
-  let copywritingByName: CopywritingByName;
   try {
     const res: ContentfulListResponse<Copywriting> = await client.getEntries({
       select: 'fields',
@@ -140,30 +118,31 @@ export async function getStaticProps(context) {
       locale: contentfulLocales[locale],
     });
 
-    copywritingByName = res.items.reduce(
+    const i18nDict: I18nDict = res.items.reduce(
       (map, { fields }) => ({
         ...map,
         [fields.name]: fields.value,
       }),
       {}
     );
+
+    return {
+      props: {
+        i18nDict,
+        locale,
+      },
+    };
   } catch (e) {
     if (e.message.startsWith('Unknown locale:')) {
       console.error(
+        '[getStaticProps]',
         e.message,
         'We will support this after we upgrade our plan'
       );
     }
-    console.error('getStaticProps error', e);
-    copywritingByName = {};
+    console.error('[getStaticProps] Unknown error:', e);
+    return { props: {} };
   }
+};
 
-  return {
-    props: {
-      copywritingByName,
-      locale,
-    },
-  };
-}
-
-export default Index;
+export default withLocale(Index);
