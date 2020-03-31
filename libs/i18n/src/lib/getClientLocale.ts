@@ -1,17 +1,18 @@
-import { defaultLocale, locales, localeNames } from './locales';
+import { defaultLocale, locales } from './locales';
+import { Locale, isLocale } from './types';
 
-export function setLocale(locale: string): void {
+export function setLocale(locale: Locale): void {
   localStorage.setItem('locale', locale);
 }
 
-export function getLocale(): string {
+export function getLocale(): Locale {
   return localStorage.getItem('locale');
 }
 
-export function getInitialLocale(): string {
+export function getClientLocale(): Locale {
   const languages = [getLocale(), ...navigator.languages];
 
-  const exactLocale = languages.find((language) => language in localeNames);
+  const exactLocale = languages.find(isLocale);
 
   if (exactLocale) return exactLocale;
 
