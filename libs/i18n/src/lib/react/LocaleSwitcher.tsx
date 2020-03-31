@@ -24,7 +24,7 @@ export const LocaleSwitcher: React.FC = () => {
     (option: Option) => {
       router.push(router.pathname, router.asPath.replace(locale, option.value));
     },
-    [router]
+    [locale, router]
   );
 
   return (
