@@ -1,1 +1,1 @@
-export * from './lib/lucas-components';
+export * from './components/Layout';
