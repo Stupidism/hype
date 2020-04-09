@@ -2,18 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Flex } from '@hype/ui';
-import { LocaleSwitcher, useTranslate } from '@hype/i18n';
+import { useTranslate } from '@hype/i18n';
+import { Navigation } from './Navigation';
 
 const LogoImg = styled.img`
   width: 60px;
   height: 40px;
   margin-right: 50px;
-`;
-
-const SelectWrapper = styled.div`
-  width: 150px;
-  color: black;
-  float: right;
 `;
 
 const StyledApp = styled.div`
@@ -54,14 +49,10 @@ export const Layout = ({ children }) => {
     <StyledApp>
       <Flex as="header" alignItems="center" justifyContent="center" p="5px">
         <LogoImg src="/assets/hype-logo.png" alt="Hype Logo White" />
-        <h1>{t('welcome-message')}</h1>
+        <Navigation />
       </Flex>
       <main>{children}</main>
-      <footer>
-        <SelectWrapper>
-          <LocaleSwitcher />
-        </SelectWrapper>
-      </footer>
+      <footer></footer>
     </StyledApp>
   );
 };
