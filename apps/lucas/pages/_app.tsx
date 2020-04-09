@@ -10,9 +10,9 @@ import GlobalStyles from '../src/styles/GlobalStyles';
 
 export default class MyApp extends App<LocaleProps> {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, router } = this.props;
     const { locale, i18nDict, ...restProps } = pageProps;
-    if (!locale) {
+    if (!locale && router.asPath !== '/') {
       // no valid locale detected
       return <Error statusCode={404} />;
     }
