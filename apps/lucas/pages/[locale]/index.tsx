@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTranslate, withLocale } from '@hype/i18n';
+import { useTranslate } from '@hype/i18n';
 import {
   Layout,
   getStaticPaths,
@@ -26,4 +26,4 @@ export { getStaticPaths };
 
 export const getStaticProps = createGetStaticProps({ contentfulClient });
 
-export default withLocale(Index);
+export default Index;

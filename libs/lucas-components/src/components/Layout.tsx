@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Flex, Box } from '@hype/ui';
+import { Flex } from '@hype/ui';
 import { LocaleSwitcher, useTranslate } from '@hype/i18n';
 
 const LogoImg = styled.img`
