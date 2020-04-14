@@ -1,8 +1,9 @@
 import { createClient } from 'contentful';
-import { environment } from '../../environments';
 
 const client = createClient({
-  ...environment.contentful,
+  host: process.env.NX_CONTENTFUL_HOST,
+  space: process.env.NX_CONTENTFUL_PROD_SPACE_ID,
+  accessToken: process.env.NX_CONTENTFUL_PROD_DELIVERY_ACCESS_TOKEN,
   resolveLinks: false,
 });
 
