@@ -1,14 +1,41 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { Flex } from '@hype/ui';
-import { useTranslate } from '@hype/i18n';
+import { LocaleSwitcher, useTranslate } from '@hype/i18n';
 import { Navigation } from './Navigation';
+import { LocaleLink } from './LocaleLink';
+import { containerCss } from './Container';
 
-const LogoImg = styled.img`
-  width: 60px;
-  height: 40px;
-  margin-right: 50px;
+const SelectWrapper = styled.div`
+  width: 150px;
+  color: black;
+  float: right;
+`;
+
+const LogoText = styled.h1`
+  margin: 0 50px 0 0;
+  cursor: pointer;
+`;
+
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  height: 80px;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+
+  ${containerCss}
+`;
+
+const Main = styled.main`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  ${containerCss}
 `;
 
 const StyledApp = styled.div`
@@ -18,18 +45,7 @@ const StyledApp = styled.div`
 
   font-family: sans-serif;
   min-width: 300px;
-  max-width: 600px;
   margin: 0 auto;
-
-  main {
-    padding: 0 36px;
-
-    h1 {
-      text-align: center;
-      margin-left: 18px;
-      font-size: 24px;
-    }
-  }
 
   footer {
     background: #000728;
@@ -47,11 +63,16 @@ export const Layout = ({ children }) => {
 
   return (
     <StyledApp>
-      <Flex as="header" alignItems="center" justifyContent="center" p="5px">
-        <LogoImg src="/assets/hype-logo.png" alt="Hype Logo White" />
+      <Header height={[60, 80]}>
+        <LocaleLink href="" as="">
+          <LogoText>Compound</LogoText>
+        </LocaleLink>
         <Navigation />
-      </Flex>
-      <main>{children}</main>
+        <SelectWrapper>
+          <LocaleSwitcher />
+        </SelectWrapper>
+      </Header>
+      <Main>{children}</Main>
       <footer></footer>
     </StyledApp>
   );

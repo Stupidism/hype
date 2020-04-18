@@ -31,7 +31,7 @@ export const createBaseColors = (baseColorSeries, overrides) => {
 export const baseColors = createBaseColors(
   {
     white: '#fff',
-    black: '#333',
+    black: '#111',
     gray: '#c3c3c3',
     yellow: '#ffd16d',
     blue: '#526384',
