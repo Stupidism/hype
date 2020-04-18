@@ -37,6 +37,16 @@
     },
     "contentful": {
       "tags": []
+    },
+    "compound": {
+      "tags": []
+    },
+    "compound-e2e": {
+      "tags": [],
+      "implicitDependencies": ["compound"]
+    },
+    "compound-ui": {
+      "tags": []
     }
   }
 }

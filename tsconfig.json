@@ -19,7 +19,8 @@
       "@hype/ui": ["libs/ui/src/index.ts"],
       "@hype/lucas-components": ["libs/lucas-components/src/index.ts"],
       "@hype/i18n": ["libs/i18n/src/index.ts"],
-      "@hype/contentful": ["libs/contentful/src/index.ts"]
+      "@hype/contentful": ["libs/contentful/src/index.ts"],
+      "@hype/compound-ui": ["libs/compound-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

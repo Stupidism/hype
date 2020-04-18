@@ -311,6 +311,125 @@
           }
         }
       }
+    },
+    "compound": {
+      "root": "apps/compound",
+      "sourceRoot": "apps/compound",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "options": {
+            "root": "apps/compound",
+            "outputPath": "dist/apps/compound"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/compound/environments/environment.ts",
+                  "with": "apps/compound/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:dev-server",
+          "options": {
+            "buildTarget": "compound:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "compound:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "compound:build:production"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/compound/.eslintrc",
+            "tsConfig": [
+              "apps/compound/tsconfig.json",
+              "apps/compound/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/compound/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/compound/jest.config.js",
+            "tsConfig": "apps/compound/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "compound-e2e": {
+      "root": "apps/compound-e2e",
+      "sourceRoot": "apps/compound-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/compound-e2e/cypress.json",
+            "tsConfig": "apps/compound-e2e/tsconfig.e2e.json",
+            "devServerTarget": "compound:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "compound:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/compound-e2e/.eslintrc",
+            "tsConfig": ["apps/compound-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/compound-e2e/**"]
+          }
+        }
+      }
+    },
+    "compound-ui": {
+      "root": "libs/compound-ui",
+      "sourceRoot": "libs/compound-ui/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/compound-ui/tsconfig.lib.json",
+              "libs/compound-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/compound-ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/compound-ui/jest.config.js",
+            "tsConfig": "libs/compound-ui/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
